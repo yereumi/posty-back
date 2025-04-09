@@ -32,4 +32,4 @@ jobs:
       - name: Build with Gradle # Gradle 빌드 실행
         run: |
           set -e
-          ./gradlew clean build -x test
+          ./gradlew clean build
