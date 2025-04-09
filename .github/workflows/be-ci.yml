@@ -30,6 +30,6 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle # Gradle 빌드 실행
-        run: | # 실패 즉시 중단
+        run: |
           set -e
           ./gradlew clean build
