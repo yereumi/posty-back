@@ -33,12 +33,12 @@ public class Like extends BaseEntity {
     private Long targetId;
 
     @Builder
-    private Like(String target, Long targetId) {
-        this.target = Target.valueOf(target);
+    private Like(Target target, Long targetId) {
+        this.target = target;
         this.targetId = targetId;
     }
 
-    private static Like of(String target, Long targetId) {
+    private static Like of(Target target, Long targetId) {
         return Like.builder()
             .target(target)
             .targetId(targetId)
