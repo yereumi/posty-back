@@ -9,13 +9,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "likes")
 public class Like extends BaseEntity {
 
@@ -25,19 +26,19 @@ public class Like extends BaseEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "target")
+    @Column(name = "target", nullable = false)
     private Target target;
 
-    @Column(name = "target_id")
+    @Column(name = "target_id", nullable = false)
     private Long targetId;
 
     @Builder
-    private Like(String target, Long targetId) {
-        this.target = Target.valueOf(target);
+    private Like(Target target, Long targetId) {
+        this.target = target;
         this.targetId = targetId;
     }
 
-    private static Like of(String target, Long targetId) {
+    private static Like of(Target target, Long targetId) {
         return Like.builder()
             .target(target)
             .targetId(targetId)

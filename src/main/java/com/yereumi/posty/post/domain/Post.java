@@ -6,13 +6,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseEntity {
 
     @Id
@@ -20,10 +21,10 @@ public class Post extends BaseEntity {
     @Column(name = "post_id")
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
 
     @Column(name = "view_count")
@@ -32,7 +33,7 @@ public class Post extends BaseEntity {
     @Column(name = "like_count")
     private Integer likeCount;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id") // 익명 글을 쓸 수 있으므로 nullable = true 로 설정
     private Long userId;
 
     @Builder
